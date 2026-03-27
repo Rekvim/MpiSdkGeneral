@@ -60,6 +60,8 @@ SelectTests::SelectTests(QWidget *parent)
 
     connect(ui->entry_testing, &QPushButton::clicked,
             this, &SelectTests::ButtonClick);
+
+    ui->button_C_CVT->click();
 }
 
 SelectTests::~SelectTests()

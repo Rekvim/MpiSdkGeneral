@@ -361,9 +361,7 @@ void ValveWindow::readFromUi(ValveInfo& v)
 
     v.positionerModel = ui->lineEdit_positionerModel->text();
 
-    v.positionerType = m_patternType == SelectTests::Pattern_C_SOVT
-                                      ? ui->comboBox_positionerType->currentText()
-                                      : "";
+    v.positionerType =  ui->comboBox_positionerType->currentText();
 
     v.dinamicErrorRecomend = ui->comboBox_dinamicError->currentText();
 
@@ -455,6 +453,7 @@ void ValveWindow::loadToUi(const ValveInfo& v)
     ui->lineEdit_PN->setText(v.PN);
     ui->lineEdit_strokValve->setText(v.strokValve);
     ui->lineEdit_positionerModel->setText(v.positionerModel);
+    ui->comboBox_positionerType->setCurrentText(v.positionerType);
 
     ui->lineEdit_solenoidValveModel->setText(v.solenoidValveModel);
     ui->lineEdit_limitSwitchModel->setText(v.limitSwitchModel);
@@ -475,6 +474,7 @@ void ValveWindow::loadToUi(const ValveInfo& v)
     ui->comboBox_driveType->setCurrentIndex(v.driveType);
     ui->comboBox_strokeMovement->setCurrentIndex(v.strokeMovement);
     ui->comboBox_toolNumber->setCurrentIndex(v.toolNumber);
+    ui->lineEdit_pulleyDiameter->setText(QString::number(v.diameterPulley));
 
     ui->checkBox_crossingLimits_coefficientFriction->setChecked(
         v.crossingLimits.frictionEnabled);

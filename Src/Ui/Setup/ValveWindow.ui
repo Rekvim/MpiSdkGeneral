@@ -36,7 +36,7 @@
       <enum>Qt::FocusPolicy::NoFocus</enum>
      </property>
      <property name="currentIndex">
-      <number>3</number>
+      <number>0</number>
      </property>
      <widget class="QWidget" name="tab_data">
       <property name="sizePolicy">
