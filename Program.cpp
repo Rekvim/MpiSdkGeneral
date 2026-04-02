@@ -263,7 +263,6 @@ void Program::initialization()
     const auto& valveInfo = m_registry->valveInfo();
     bool normalClosed = (valveInfo.safePosition == 0);
 
-
     if (m_patternType == SelectTests::Pattern_C_CVT) {
         measureStartPosition(normalClosed);
         measureEndPosition(normalClosed);

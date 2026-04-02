@@ -361,7 +361,7 @@ void ValveWindow::readFromUi(ValveInfo& v)
 
     v.positionerModel = ui->lineEdit_positionerModel->text();
 
-    v.positionerType =  ui->comboBox_positionerType->currentText();
+    v.positionerType = ui->comboBox_positionerType->currentText();
 
     v.dinamicErrorRecomend = ui->comboBox_dinamicError->currentText();
 
@@ -553,10 +553,22 @@ void ValveWindow::diameterChanged(const QString &text)
 
 void ValveWindow::on_pushButton_netWindow_clicked()
 {
+    saveLinearRange();
+
+    double min = ui->lineEdit_linearMin->text().toDouble();
+    double max = ui->lineEdit_linearMax->text().toDouble();
+
+    if (min >= max) {
+        QMessageBox::warning(this,
+                             tr("Ошибка"),
+                             tr("Минимальное значение должно быть меньше максимального"));
+        return;
+    }
+
     if (ui->lineEdit_positionNumber->text().isEmpty()) {
-        QMessageBox::warning(this, 
-            tr("Ошибка"),
-            tr("Введите номер позиции"));
+        QMessageBox::warning(this,
+                             tr("Ошибка"),
+                             tr("Введите номер позиции"));
         return;
     }
 
@@ -621,25 +633,6 @@ void ValveWindow::saveLinearRange()
 
 void ValveWindow::on_pushButton_clear_clicked()
 {
-    saveLinearRange();
-
-    double min = ui->lineEdit_linearMin->text().toDouble();
-    double max = ui->lineEdit_linearMax->text().toDouble();
-
-    if (min >= max) {
-        QMessageBox::warning(this,
-                             tr("Ошибка"),
-                             tr("Минимальное значение должно быть меньше максимального"));
-        return;
-    }
-
-    if (ui->lineEdit_positionNumber->text().isEmpty()) {
-        QMessageBox::warning(this,
-                             tr("Ошибка"),
-                             tr("Введите номер позиции"));
-        return;
-    }
-
     ui->lineEdit_manufacturer->clear();
     ui->lineEdit_valveModel->clear();
     ui->lineEdit_serialNumber->clear();
