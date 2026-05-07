@@ -10,9 +10,9 @@ CONFIG += c++17
 # In order to do so, uncomment the following line.
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
-QXLSX_PARENTPATH=./
-QXLSX_HEADERPATH=./header/
-QXLSX_SOURCEPATH=./source/
+QXLSX_PARENTPATH=./QXlsx
+QXLSX_HEADERPATH=./QXlsx/header/
+QXLSX_SOURCEPATH=./QXlsx/source/
 include(./QXlsx.pri)
 
 INCLUDEPATH += $$PWD/Src/CustomChart
