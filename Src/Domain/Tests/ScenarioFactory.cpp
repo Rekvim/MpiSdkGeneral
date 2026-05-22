@@ -2,6 +2,7 @@
 
 #include "Domain/Tests/Stroke/Scenario.h"
 #include "Domain/Tests/Main/Scenario.h"
+#include "Domain/Tests/Main/ScenarioDoubleActing.h"
 #include "Domain/Tests/Option/Step/Scenario.h"
 #include "Domain/Tests/Option/Response/Scenario.h"
 #include "Domain/Tests/Option/Resolution/Scenario.h"
@@ -18,6 +19,15 @@ namespace Domain::Tests {
     std::unique_ptr<AbstractScenario>
     ScenarioFactory::createMain(Context context, const Main::Params& params, QObject* parent) {
         return std::make_unique<Main::Scenario>(
+            context,
+            params,
+            parent
+        );
+    }
+
+    std::unique_ptr<AbstractScenario>
+    ScenarioFactory::createMainDoubleActing(Context context, const Main::Params& params, QObject* parent) {
+        return std::make_unique<Main::ScenarioDoubleActing>(
             context,
             params,
             parent

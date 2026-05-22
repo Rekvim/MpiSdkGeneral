@@ -19,6 +19,7 @@ protected:
                        quint32 sleepMs = 0,
                        bool waitForStop = false,
                        bool waitForStart = false);
+    void waitBlocked();
 
 public slots:
     virtual void run() = 0;

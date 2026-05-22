@@ -18,7 +18,7 @@ public:
     void run() override;
     void setParameters(Params& parameters);
 
-private:
+protected:
     Params m_params;
 
 signals:

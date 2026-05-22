@@ -19,6 +19,11 @@ void AbstractTestAlgorithm::setDacBlocked(quint16 value, quint32 sleepMs, bool w
     m_eventLoop->exec();
 }
 
+void AbstractTestAlgorithm::waitBlocked()
+{
+    m_eventLoop->exec();
+}
+
 void AbstractTestAlgorithm::requestStop()
 {
     m_terminate = true;

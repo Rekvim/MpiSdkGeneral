@@ -4,8 +4,11 @@ set(DOMAIN_CPP
     Domain/Mpi/Device.cpp
     Domain/Mpi/Settings.cpp
     Domain/Tests/Main/Algorithm.cpp
+    Domain/Tests/Main/AlgorithmDoubleActing.cpp
     Domain/Tests/Main/Analyzer.cpp
     Domain/Tests/Main/Runner.cpp
+    Domain/Tests/Main/RunnerDoubleActing.cpp
+    Domain/Tests/Main/ScenarioDoubleActing.cpp
     Domain/Tests/Option/Algorithm.cpp
     Domain/Tests/Option/Step/Analyzer.cpp
     Domain/Tests/Option/Step/Runner.cpp
@@ -50,10 +53,13 @@ set(DOMAIN_HEADERS
     Domain/Tests/AnalyzerFactory.h
     Domain/Tests/IAnalyzer.h
     Domain/Tests/Main/Algorithm.h
+    Domain/Tests/Main/AlgorithmDoubleActing.h
     Domain/Tests/Main/Analyzer.h
     Domain/Tests/Main/Params.h
     Domain/Tests/Main/Result.h
     Domain/Tests/Main/Runner.h
+    Domain/Tests/Main/RunnerDoubleActing.h
+    Domain/Tests/Main/ScenarioDoubleActing.h
     Domain/Tests/Option/Algorithm.h
 
     Domain/Tests/Option/Step/Analyzer.h

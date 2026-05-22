@@ -41,6 +41,7 @@ public:
 
 public slots:
     void runMainTest(const Domain::Tests::Main::Params& params);
+    void runMainTestDoubleActing(const Domain::Tests::Main::Params& params);
     void runStrokeTest();
     void runResponseTest(const Domain::Tests::Option::Params& params);
     void runResolutionTest(const Domain::Tests::Option::Params& params);

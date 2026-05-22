@@ -56,7 +56,7 @@
        <enum>Qt::FocusPolicy::StrongFocus</enum>
       </property>
       <property name="currentIndex">
-       <number>0</number>
+       <number>4</number>
       </property>
       <widget class="QWidget" name="tab_manual">
        <property name="focusPolicy">
@@ -1583,19 +1583,7 @@
        <attribute name="title">
         <string>Основные тесты</string>
        </attribute>
-       <layout class="QVBoxLayout" name="verticalLayout_20">
-        <property name="leftMargin">
-         <number>5</number>
-        </property>
-        <property name="topMargin">
-         <number>5</number>
-        </property>
-        <property name="rightMargin">
-         <number>5</number>
-        </property>
-        <property name="bottomMargin">
-         <number>5</number>
-        </property>
+       <layout class="QVBoxLayout" name="verticalLayout_9">
         <item>
          <layout class="QHBoxLayout" name="horizontalLayout_13">
           <property name="spacing">
@@ -3567,7 +3555,7 @@ Border-radius: 10px;
          </layout>
         </item>
         <item>
-         <layout class="QHBoxLayout" name="horizontalLayout_mainTestsMenu">
+         <layout class="QHBoxLayout" name="horizontalLayout_2">
           <item>
            <widget class="QPushButton" name="pushButton_commentMainTest">
             <property name="font">
@@ -3581,6 +3569,31 @@ Border-radius: 10px;
             </property>
             <property name="text">
              <string>Комментарий к тесту</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="pushButton_mainTest_continue">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Minimum" vsizetype="Preferred">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="font">
+             <font>
+              <family>Segoe UI</family>
+              <pointsize>10</pointsize>
+             </font>
+            </property>
+            <property name="visible">
+             <bool>false</bool>
+            </property>
+            <property name="styleSheet">
+             <string>padding: 5px 10px; background-color: #4CAF50; color: white;</string>
+            </property>
+            <property name="text">
+             <string>Продолжить</string>
             </property>
            </widget>
           </item>
@@ -4181,7 +4194,7 @@ Border-radius: 10px;
                </font>
               </property>
               <property name="currentIndex">
-               <number>1</number>
+               <number>0</number>
               </property>
               <widget class="QWidget" name="tab_4">
                <attribute name="title">

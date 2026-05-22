@@ -144,6 +144,9 @@ private:
     void setupShortcuts();
     void setupPrimaryActions();
 
+    bool isDoubleActingIPMode() const;
+    void onManualResumeRequired();
+
     TestState m_testState = TestState::Idle;
     void applyTestStateToUi(TestState  state);
     void setTestState(TestState state);

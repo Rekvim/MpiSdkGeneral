@@ -31,7 +31,7 @@ protected:
 private:
     void onProcessCompleted();
 
-private:
+protected:
     Tests::Context m_context;
     Params m_params;
 

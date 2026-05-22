@@ -55,6 +55,9 @@ signals:
     void addFrictionRequested(const QVector<QPointF>& points);
     void duplicateMainChartsSeriesRequested();
 
+    // Emitted when algorithm pauses for manual operator action (double-acting + IP converter mode)
+    void waitingForManualResume();
+
 protected:
     virtual void beforeStart();
     virtual void afterRunnerCreated(BaseRunner& runner);

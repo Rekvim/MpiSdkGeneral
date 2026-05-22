@@ -127,6 +127,10 @@ signals:
     void totalTestTimeMs(quint64 totalMs);
     void runnerFinished();
 
+    // Emitted when the double-acting + IP-converter algorithm is waiting for
+    // the operator to manually reset mA and press Continue
+    void manualResumeRequired();
+
 private:
     bool isDeviceReadyForTest() const;
     void failToStartTest(const QString& reason);
@@ -207,6 +211,8 @@ public slots:
 
     void startStrokeTest();
     void startMainTest(const Domain::Tests::Main::Params& params);
+    void startMainTestDoubleActing(const Domain::Tests::Main::Params& params);
+    void continueTest();
     void startResponseTest(const Domain::Tests::Option::Params& params);
     void startResolutionTest(const Domain::Tests::Option::Params& params);
     void startStepTest(const Domain::Tests::Option::Step::Params& params);

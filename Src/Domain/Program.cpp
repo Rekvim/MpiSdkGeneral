@@ -4,6 +4,7 @@
 
 #include "Domain/Tests/AbstractScenario.h"
 #include "Domain/Tests/ScenarioFactory.h" // !
+#include "Domain/Tests/Main/ScenarioDoubleActing.h"
 
 #include "Domain/Tests/Main/Params.h"
 #include "Domain/Tests/Option/Step/Params.h"
@@ -550,6 +551,30 @@ bool Program::isDeviceReadyForTest() const
     return true;
 }
 
+void Program::startMainTestDoubleActing(const Tests::Main::Params& params)
+{
+    m_testWorker = TestWorker::Main;
+
+    emit setRegressionEnable(false);
+
+    auto scenario = Tests::ScenarioFactory::createMainDoubleActing(
+        makeContext(),
+        params,
+        this
+        );
+
+    startScenario(std::move(scenario));
+
+    emit clearPoints(ChartType::Trend);
+    emit clearPoints(ChartType::Pressure);
+    emit clearPoints(ChartType::Friction);
+}
+
+void Program::continueTest()
+{
+    emit releaseBlock();
+}
+
 void Program::startStrokeTest()
 {
     m_testWorker = TestWorker::Stroke;
@@ -674,6 +699,10 @@ void Program::connectScenarioRuntime(Domain::Tests::AbstractScenario* scenario)
             this, [this] {
                 emit duplicateMainChartsSeries();
             },
+            Qt::QueuedConnection);
+
+    connect(scenario, &Domain::Tests::AbstractScenario::waitingForManualResume,
+            this, &Program::manualResumeRequired,
             Qt::QueuedConnection);
 }
 

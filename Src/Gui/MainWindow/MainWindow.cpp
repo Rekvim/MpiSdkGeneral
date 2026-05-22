@@ -298,6 +298,19 @@ MainWindow::MainWindow(QWidget *parent)
     connect(m_testController, &TestController::stateChanged,
             this, &MainWindow::setTestState);
 
+    connect(m_program, &Domain::Program::manualResumeRequired,
+            this, &MainWindow::onManualResumeRequired,
+            Qt::QueuedConnection);
+
+    connect(ui->pushButton_mainTest_continue, &QPushButton::clicked,
+            this, [this] {
+                ui->pushButton_mainTest_continue->setVisible(false);
+                QMetaObject::invokeMethod(
+                    m_program,
+                    [program = m_program] { program->continueTest(); },
+                    Qt::QueuedConnection);
+            });
+
     ui->tabWidget_mainTests->setCurrentIndex(0);
     ui->tabWidget_optionalTests->setCurrentIndex(0);
     ui->tabWidget_reportGeneration->setCurrentIndex(0);
@@ -941,10 +954,12 @@ void MainWindow::applyTestStateToUi(TestState state)
         setTaskControlsEnabled(false);
         break;
     case TestState::Canceled:
+        ui->pushButton_mainTest_continue->setVisible(false);
         ui->statusbar->showMessage(tr("Тест остановлен"));
         setTaskControlsEnabled(true);
         break;
     case TestState::Finished:
+        ui->pushButton_mainTest_continue->setVisible(false);
         ui->statusbar->showMessage(tr("Сохранение результатов..."));
         setTaskControlsEnabled(true);
         QTimer::singleShot(1500, this, [this]{
@@ -992,7 +1007,10 @@ void MainWindow::startMainTestClicked()
 
     const auto params = m_mainTestSettings->parameters();
 
-    m_testController->runMainTest(params);
+    if (isDoubleActingIPMode())
+        m_testController->runMainTestDoubleActing(params);
+    else
+        m_testController->runMainTest(params);
 }
 void MainWindow::saveMainTestChartClicked()
 {
@@ -1668,6 +1686,24 @@ void MainWindow::openReportClicked()
 {
     QDesktopServices::openUrl(
         QUrl::fromLocalFile(m_reportSaver->directory().filePath(QStringLiteral("report.xlsx"))));
+}
+
+bool MainWindow::isDoubleActingIPMode() const
+{
+    if (!m_registry)
+        return false;
+
+    const auto& v = m_registry->valveInfo();
+    return v.driveType == DriveType::DoubleActing
+        && v.positionerType == PositionerType::IPConverter;
+}
+
+void MainWindow::onManualResumeRequired()
+{
+    ui->statusbar->showMessage(
+        tr("Ожидание: вручную сбросьте mA до 3 мА, верните клапан в исходное положение, затем нажмите «Продолжить»"));
+
+    ui->pushButton_mainTest_continue->setVisible(true);
 }
 
 void MainWindow::backClicked()

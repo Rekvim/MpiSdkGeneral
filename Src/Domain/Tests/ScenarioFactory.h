@@ -31,6 +31,11 @@ public:
         const Main::Params& params,
         QObject* parent = nullptr);
 
+    static std::unique_ptr<AbstractScenario> createMainDoubleActing(
+        Context context,
+        const Main::Params& params,
+        QObject* parent = nullptr);
+
     static std::unique_ptr<AbstractScenario> createStep(
         Context context,
         const Option::Step::Params& params,

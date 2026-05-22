@@ -90,6 +90,21 @@ void TestController::runMainTest(const Domain::Tests::Main::Params& params)
     });
 }
 
+void TestController::runMainTestDoubleActing(const Domain::Tests::Main::Params& params)
+{
+    run([this, params] {
+        auto* program = m_program;
+
+        QMetaObject::invokeMethod(
+            program,
+            [program, params] {
+                program->startMainTestDoubleActing(params);
+            },
+            Qt::QueuedConnection
+            );
+    });
+}
+
 void TestController::runResponseTest(const Domain::Tests::Option::Params& params)
 {
     run([this, params] {
